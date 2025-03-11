@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   LastUpgradeVersion = "1620"
+   version = "1.7">
+   <BuildAction
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES"
+      buildArchitectures = "Automatic">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPortfolio"
+               BuildableName = "SwiftPortfolio"
+               BlueprintName = "SwiftPortfolio"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      shouldAutocreateTestPlan = "YES">
+   </TestAction>
+   <LaunchAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
+      allowLocationSimulation = "YES">
+      <PostActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "# Extract the project directory from WORKSPACE_PATH&#10;PROJECT_DIR=$(dirname &quot;$(dirname &quot;$(dirname &quot;$WORKSPACE_PATH&quot;)&quot;)&quot;)&#10;echo &quot;Derived project directory: $PROJECT_DIR&quot; &gt; ~/ignite_action.log&#10;&#10;# Set default port&#10;DEFAULT_PORT=8000&#10;&#10;# Create or update config file if it doesn&apos;t exist&#10;CONFIG_FILE=&quot;$PROJECT_DIR/.config.sh&quot;&#10;if [ ! -f &quot;$CONFIG_FILE&quot; ]; then&#10;    cat &gt; &quot;$CONFIG_FILE&quot; &lt;&lt; ENDCONFIG&#10;#!/bin/bash&#10;# Server configuration&#10;SITE_PORT=$DEFAULT_PORT&#10;ENDCONFIG&#10;    chmod +x &quot;$CONFIG_FILE&quot;&#10;fi&#10;&#10;# Source configuration&#10;source &quot;$CONFIG_FILE&quot;&#10;&#10;# Use environment variable if provided, otherwise use config&#10;PORT=&quot;${SITE_PORT:-$DEFAULT_PORT}&quot;&#10;echo &quot;Using port: $PORT&quot; &gt;&gt; ~/ignite_action.log&#10;&#10;# Verify directory&#10;if [ -f &quot;$PROJECT_DIR/Package.swift&quot; ]; then&#10;    echo &quot;Package.swift found - correct directory!&quot; &gt;&gt; ~/ignite_action.log&#10;    cd &quot;$PROJECT_DIR&quot;&#10;    &#10;    # Check if port is already in use&#10;    if lsof -i :$PORT &gt; /dev/null 2&gt;&amp;1; then&#10;        echo &quot;Port $PORT is already in use. Opening browser...&quot; &gt;&gt; ~/ignite_action.log&#10;        # Just open the browser if server is already running&#10;        open &quot;http://localhost:$PORT&quot;&#10;        exit 0&#10;    fi&#10;    &#10;    # Kill any existing ignite servers just to be safe&#10;    echo &quot;Killing any existing ignite processes...&quot; &gt;&gt; ~/ignite_action.log&#10;    pkill -f &quot;ignite run&quot; || true&#10;    sleep 1&#10;    &#10;    # Launch a new Terminal window with the server&#10;    echo &quot;Launching new terminal with server...&quot; &gt;&gt; ~/ignite_action.log&#10;    osascript &lt;&lt;EOF &gt;&gt; ~/ignite_action.log 2&gt;&amp;1&#10;    tell application &quot;Terminal&quot;&#10;      do script &quot;cd &apos;$PROJECT_DIR&apos; &amp;&amp; echo &apos;Starting ignite server on port $PORT...&apos; &amp;&amp; /usr/local/bin/ignite run -p $PORT; exit&quot;&#10;      set current settings of selected tab of window 1 to settings set &quot;Basic&quot; &#10;      set custom title of window 1 to &quot;Ignite Server (Port $PORT)&quot;&#10;      activate&#10;    end tell&#10;EOF&#10;    &#10;    # Open browser after a short delay&#10;    sleep 3&#10;    echo &quot;Opening browser...&quot; &gt;&gt; ~/ignite_action.log&#10;    open &quot;http://localhost:$PORT&quot;&#10;else&#10;    echo &quot;No Package.swift found at $PROJECT_DIR&quot; &gt;&gt; ~/ignite_action.log&#10;fi&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "SwiftPortfolio"
+                     BuildableName = "SwiftPortfolio"
+                     BlueprintName = "SwiftPortfolio"
+                     ReferencedContainer = "container:">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PostActions>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "SwiftPortfolio"
+            BuildableName = "SwiftPortfolio"
+            BlueprintName = "SwiftPortfolio"
+            ReferencedContainer = "container:">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </LaunchAction>
+   <ProfileAction
+      buildConfiguration = "Release"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "SwiftPortfolio"
+            BuildableName = "SwiftPortfolio"
+            BlueprintName = "SwiftPortfolio"
+            ReferencedContainer = "container:">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </ProfileAction>
+   <AnalyzeAction
+      buildConfiguration = "Debug">
+   </AnalyzeAction>
+   <ArchiveAction
+      buildConfiguration = "Release"
+      revealArchiveInOrganizer = "YES">
+   </ArchiveAction>
+</Scheme>
