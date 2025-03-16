@@ -187,6 +187,8 @@
   align-self: flex-start;
   line-height: 16px;
   margin-right: 8px;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .console-contents {
@@ -227,4 +229,3 @@
   height: 100%;
   width: 100%;
 }
-
