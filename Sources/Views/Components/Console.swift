@@ -28,10 +28,16 @@ struct Console: HTML {
                     
                     Button {
                         Image("/images/console/options.svg", description: "Console options")
+                            .resizable()
+                            .imageFit(.fit)
                     }
                     .class("console-button")
+                    .frame(width: .custom(LengthUnit.px(24).stringValue), height: .custom(LengthUnit.px(24).stringValue))
                     
                     Spacer()
+                    
+                    Span()
+                        .style(.flexGrow, "1")
                     
                     Span {
                         "&copy; \(year) Jordan Christensen"
@@ -40,22 +46,29 @@ struct Console: HTML {
                     
                     Button {
                         Image("/images/console/sidebarLeft.svg", description: "Toggle variable navigator")
+                            .resizable()
+                            .imageFit(.fit)
                     }
                     .class("console-button")
+                    .frame(width: .custom(LengthUnit.px(24).stringValue), height: .custom(LengthUnit.px(24).stringValue))
                     .onClick {
                         CustomAction("toggleLeftSidebar(); addLog('Left sidebar toggled')")
                     }
                     
                     Button {
                         Image("/images/console/sidebarRight.svg", description: "Toggle console")
+                            .resizable()
+                            .imageFit(.fit)
                     }
                     .class("console-button")
+                    .frame(width: .custom(LengthUnit.px(24).stringValue), height: .custom(LengthUnit.px(24).stringValue))
                     .onClick {
                         CustomAction("toggleRightSidebar(); addLog('Right sidebar toggled')")
                     }
                 }
                 .class("options")
                 .id("console-options")
+                .frame(height: .px(24))
             }
             .class("floating")
             .style(.right, "0")
