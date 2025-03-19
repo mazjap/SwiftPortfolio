@@ -70,8 +70,6 @@
 .console-icon {
   transition: fill 0.3s;
   transition: stroke 0.3s;
-  width: 16px;
-  height: 16px;
 }
 
 .console p {
