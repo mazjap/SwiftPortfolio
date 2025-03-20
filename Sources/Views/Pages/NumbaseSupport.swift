@@ -5,7 +5,7 @@ struct NumbaseSupport: StaticLayout {
     let title = "Numbase Support"
     
     var body: some HTML {
-        Header(title: "Numbase", subtitle: "Support - Last updated: January 15th, 2025")
+        Header(title: "Numbase Support", subtitle: "Numbase is a macOS utility for converting between number bases (decimal, binary, hexadecimal, and octal) and performing calculations in different bases.", subnote: "v1.0")
         
         VStack {
             Text("Overview")

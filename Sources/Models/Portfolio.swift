@@ -34,7 +34,8 @@ struct Portfolio: Site {
 //    var tagLayout: TagPageLayout
     
     var staticLayouts: [any StaticLayout] = [
-        NumbasePrivacyPolicy()
+        NumbasePrivacyPolicy(),
+        NumbaseSupport()
     ]
 //
 //    /// An array of all the content layouts you want to include in your site.
