@@ -11,7 +11,7 @@ struct MainLayout: Layout {
             MetaLink(href: "/css/experience.css", rel: .stylesheet)
             MetaLink(href: "/css/projects.css", rel: .stylesheet)
             MetaLink(href: "/css/education.css", rel: .stylesheet)
-            MetaLink(href: "/css/console.css", rel: .stylesheet)
+//            MetaLink(href: "/css/console.css", rel: .stylesheet)
         }
         
         Body {
@@ -21,7 +21,7 @@ struct MainLayout: Layout {
             
             Footer()
             
-            Console()
+//            Console()
         }
         .ignorePageGutters()
     }
