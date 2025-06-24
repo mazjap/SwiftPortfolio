@@ -35,7 +35,8 @@ struct Portfolio: Site {
     
     var staticLayouts: [any StaticLayout] = [
         NumbasePrivacyPolicy(),
-        NumbaseSupport()
+        NumbaseSupport(),
+        FlaskMasterPrivacyPolicy(),
     ]
 //
 //    /// An array of all the content layouts you want to include in your site.
